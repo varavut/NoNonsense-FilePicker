@@ -6,6 +6,7 @@ android {
 
     lintOptions {
         abortOnError false
+        disable "Instantiatable"
     }
 
     defaultConfig {
