@@ -93,7 +93,7 @@ entry to your manifest to use the included FilePickerFragment:
 
 ```xml
     <provider
-        android:name="android.support.v4.content.FileProvider"
+        android:name="androidx.core.content.FileProvider"
         android:authorities="${applicationId}.provider"
         android:exported="false"
         android:grantUriPermissions="true">

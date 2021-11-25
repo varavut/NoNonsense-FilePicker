@@ -1,6 +1,6 @@
 package com.nononsenseapps.filepicker.sample.root;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import com.nononsenseapps.filepicker.FilePickerFragment;

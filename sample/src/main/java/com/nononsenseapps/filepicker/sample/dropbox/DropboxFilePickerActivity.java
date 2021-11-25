@@ -7,7 +7,7 @@
 package com.nononsenseapps.filepicker.sample.dropbox;
 
 import android.app.Activity;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.widget.Toast;
 
 import com.dropbox.core.v2.DbxClientV2;

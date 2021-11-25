@@ -6,7 +6,7 @@
 
 package com.nononsenseapps.filepicker.sample.ftp;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.apache.commons.net.ftp.FTPFile;
 

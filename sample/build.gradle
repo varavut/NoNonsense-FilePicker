@@ -13,8 +13,8 @@ repositories {
 }
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    compileSdkVersion 31
+    buildToolsVersion '31.0.0'
 
     dataBinding {
         enabled = true
@@ -30,7 +30,7 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode gitCommitCount
         versionName gitTag
@@ -67,24 +67,29 @@ dependencies {
     implementation project(':library')
 
     // Image loading sample
-    implementation 'com.github.bumptech.glide:glide:3.6.1'
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 
     // FTP browser sample
-    implementation 'commons-net:commons-net:3.3'
+    implementation 'commons-net:commons-net:3.6'
 
     // Root example
     implementation 'eu.chainfire:libsuperuser:1.0.0.+'
 
     // Fast scroll example
-    implementation 'com.simplecityapps:recyclerview-fastscroll:1.0.9'
+    implementation 'com.simplecityapps:recyclerview-fastscroll:2.0.1'
 
     // Dropbox example
-    implementation 'com.dropbox.core:dropbox-core-sdk:3.0.5'
+    implementation 'com.dropbox.core:dropbox-core-sdk:5.0.0'
+
+
+    implementation "androidx.appcompat:appcompat:1.4.0"
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
 
     // UI Tests
     androidTestImplementation 'junit:junit:4.12'
-    uitestsImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
-    uitestsImplementation 'com.android.support.test:runner:0.5'
-    uitestsImplementation 'com.android.support.test.espresso:espresso-contrib:2.2.2'
-    uitestsImplementation 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    uitestsImplementation 'androidx.test:runner:1.4.0'
+    uitestsImplementation 'androidx.test.espresso:espresso-contrib:3.4.0'
+    uitestsImplementation 'androidx.test.uiautomator:uiautomator:2.2.2'
 }

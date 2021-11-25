@@ -1,6 +1,6 @@
 package com.nononsenseapps.filepicker.sample.fastscroller;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.nononsenseapps.filepicker.FileItemAdapter;
 import com.nononsenseapps.filepicker.LogicHandler;

@@ -6,98 +6,46 @@
 
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
-apply plugin: 'signing'
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    compileSdkVersion 31
+    buildToolsVersion '31.0.0'
 
     lintOptions {
         abortOnError false
     }
 
     defaultConfig {
-        minSdkVersion 9
+        minSdkVersion 21
         targetSdkVersion 28
-        versionCode gitCommitCount
-        versionName gitTag
         vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
     }
 }
 
 dependencies {
-    implementation 'com.android.support:appcompat-v7:24.2.1'
-    implementation 'com.android.support:support-v4:24.2.1'
-    implementation 'com.android.support:recyclerview-v7:24.2.1'
+    implementation "androidx.appcompat:appcompat:1.4.0"
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
 
     testImplementation 'junit:junit:4.12'
 }
 
-task androidSourcesJar(type: Jar) {
-    archiveClassifier.set('sources')
-    from android.sourceSets.main.java.srcDirs
-//    from android.sourceSets.main.kotlin.srcDirs
-}
-
-artifacts {
-    archives androidSourcesJar
-}
-
-publishing {
-    repositories {
-        maven {
-            name = "localFile"
-            url = "file://${buildDir}/repo"
-        }
-        maven {
-            name = "mavenCentral"
-            url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
-            credentials {
-                username findProperty("nexusUsername")
-                password findProperty("nexusPassword")
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.varavut'
+                artifactId = 'filepicker'
+                version = gitTag
             }
         }
     }
-    publications {
-        maven(MavenPublication) {
-            groupId = 'com.nononsenseapps'
-            artifactId = 'filepicker'
-            version = gitTag
-
-            artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
-            artifact androidSourcesJar
-
-            pom {
-                name = "NoNonsense Filepicker"
-                description = "An extendable Android file/directory-picker you can include in your app"
-                url = "https://github.com/spacecowboy/NoNonsense-FilePicker"
-                licenses {
-                    license {
-                        name = "Mozilla Public License Version 2.0"
-                        url = "https://www.mozilla.org/en-US/MPL/2.0/"
-                    }
-                }
-                scm {
-                    connection = "scm:git:git://github.com/spacecowboy/NoNonsense-FilePicker.git"
-                    developerConnection = "scm:git:ssh://git@github.com:spacecowboy/NoNonsense-FilePicker.git"
-                    url = "https://github.com/spacecowboy/NoNonsense-FilePicker"
-                }
-//                withXml {
-//                    def dependenciesNode = asNode().appendNode('dependencies')
-//
-//                    project.configurations.implementation.allDependencies.each {
-//                        def dependencyNode = dependenciesNode.appendNode('dependency')
-//                        dependencyNode.appendNode('groupId', it.group)
-//                        dependencyNode.appendNode('artifactId', it.name)
-//                        dependencyNode.appendNode('version', it.version)
-//                    }
-//                }
-            }
-        }
-    }
-}
-
-signing {
-    useGpgCmd()
-    sign publishing.publications.maven
 }
