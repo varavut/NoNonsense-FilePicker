@@ -4,8 +4,9 @@
   ~ file, You can obtain one at http://mozilla.org/MPL/2.0/.
   -->
 
-<manifest package="com.nononsenseapps.filepicker">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.nononsenseapps.filepicker">
 
-    <application/>
+    <application android:requestLegacyExternalStorage="true" />
 
 </manifest>
